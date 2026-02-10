@@ -1,0 +1,16 @@
+﻿targets:
+  $default:
+    builders:
+      localizx|static_keys_generator:
+        enabled: true
+
+builders:
+  static_keys_generator:
+    target: ":localizx"
+    import: "package:localizx/src/generator/builder.dart"
+    builder_factories: [ "localizxKeysBuilder" ]
+    build_extensions: { ".dart": [ "*.g.part" ] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: [ "source_gen|combining_builder" ]
+
